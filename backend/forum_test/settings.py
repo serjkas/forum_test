@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'haystack',
     'widget_tweaks',
     'drf_yasg',
+    
+    'users',
 
     'machina',
     'machina.apps.forum',
