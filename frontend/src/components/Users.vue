@@ -4,12 +4,14 @@
     <table class="table table-striped table-sm">
         <thead>
         <tr>
-            <th>username</th>
-            <th>forum</th>
+            <th>Отслеживание форума</th>
+            <th>Пользователь</th>
+            <th>Форум</th>
         </tr>
         </thead>
         <tbody>
         <tr v-for="user in users" :key="user.id">
+            <td>{{ user.username}} - {{ user.name}}</td>
             <td>{{ user.username}}</td>  
             <td>{{ user.name}}</td>  
             
