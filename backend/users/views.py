@@ -1,12 +1,19 @@
 
 from rest_framework.response import Response
-from django.http import JsonResponse
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.decorators import api_view
 from django.db import connection
 
 
+class MyPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 10
+
 @api_view(['GET'])
 def get_users_forum(request):
+    paginator = MyPagination()
+
     with connection.cursor() as cursor:
         query = """
         SELECT username, name FROM `test_db`.`forum_tracking_forumreadtrack` ft
@@ -22,9 +29,7 @@ def get_users_forum(request):
             for row in cursor.fetchall()
         ]
 
-    if resp:
-        return Response(resp)
-    else:
-        return Response('Not found users')    
+    page = paginator.paginate_queryset(resp, request)
+    return paginator.get_paginated_response(page)  
 
     
