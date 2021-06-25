@@ -21,7 +21,6 @@ def get_users_forum(request):
         left join `test_db`.`forum_forum` fo on fo.id = ft.forum_id LIMIT 1000;
         """
         cursor.execute(query)
-        row = cursor.fetchone()
 
         columns = [col[0] for col in cursor.description]
         resp = [
