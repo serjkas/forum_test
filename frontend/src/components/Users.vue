@@ -11,9 +11,9 @@
         </thead>
         <tbody>
         <tr v-for="user in users" :key="user.id">
-            <td>{{ user.username}} - {{ user.name}}</td>
-            <td>{{ user.username}}</td>  
-            <td>{{ user.name}}</td>  
+            <td>{{ user.user.username}} - {{ user.forum.name}}</td>
+            <td>{{ user.user.username}}</td>  
+            <td>{{ user.forum.name}}</td>  
             
 
         </tr>
@@ -42,7 +42,7 @@ export default {
 
         const load = async () => {
             
-            const response = await axios.get(`get_users_forum?page=${page.value}`)   
+            const response = await axios.get(`forum_read_track?page=${page.value}`)   
             users.value = response.data.results
             console.log(users.value)
         }
